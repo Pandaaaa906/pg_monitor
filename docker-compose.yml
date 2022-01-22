@@ -1,6 +1,11 @@
 version: '3'
 
 services:
+  base:
+    container_name: pg_monitor_base
+    build: .
+    volumes:
+      - /www/pg_monitor/prometheus/conf/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
   postgres_exporter:
     image: wrouesnel/postgres_exporter
     container_name: pg_monitor_exporter
@@ -14,6 +19,7 @@ services:
       - /www/pg_monitor/prometheus/conf/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
     depends_on:
       - postgres_exporter
+      - base
   grafana:
     image: grafana/grafana
     container_name: pg_monitor_grafana
