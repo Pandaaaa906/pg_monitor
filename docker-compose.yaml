@@ -11,6 +11,7 @@ services:
     container_name: pg_monitor_exporter
     env_file:
       - .env
+    restart: unless-stopped
   prometheus:
     image: bitnami/prometheus:latest
     container_name: pg_monitor_prometheus
@@ -20,6 +21,7 @@ services:
     depends_on:
       - postgres_exporter
       - base
+    restart: unless-stopped
   grafana:
     image: grafana/grafana
     container_name: pg_monitor_grafana
@@ -27,3 +29,4 @@ services:
       - 3000:3000
     depends_on:
       - prometheus
+    restart: unless-stopped
