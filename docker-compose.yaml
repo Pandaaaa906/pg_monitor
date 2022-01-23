@@ -9,6 +9,12 @@ services:
   postgres_exporter:
     image: wrouesnel/postgres_exporter
     container_name: pg_monitor_exporter
+    ports:
+      - 3001:9187
+    environment:
+      - PG_EXPORTER_EXTEND_QUERY_PATH=/pg_exporter/query/
+    volumes:
+      - /www/pg_monitor/pg_exporter/query/:/pg_exporter/query/
     env_file:
       - .env
     restart: unless-stopped
