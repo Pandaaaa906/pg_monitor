@@ -2,6 +2,7 @@
 
 A quick build up of postgresql monitor
 
+![img.png](docs/img/summary.png)
 1. Create a .env file like this
 
 ```dotenv
