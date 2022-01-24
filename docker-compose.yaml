@@ -31,6 +31,9 @@ services:
   grafana:
     image: grafana/grafana
     container_name: pg_monitor_grafana
+    volumes:
+      - /www/pg_monitor/grafana/data:/var/lib/grafana
+      - /www/pg_monitor/grafana/provisioning:/etc/grafana/provisioning
     ports:
       - 3000:3000
     depends_on:
